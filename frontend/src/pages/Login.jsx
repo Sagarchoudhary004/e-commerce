@@ -1,7 +1,14 @@
 
-import React from "react";
+import React, { useState } from "react";
+
 
 export default function Login() {
+
+
+  const [isLogin, setLogin] = useState(true)
+
+
+
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-gray-100">
 
@@ -62,19 +69,35 @@ export default function Login() {
           {/* Login / Register Buttons */}
           <div className="flex bg-gray-100 rounded-xl p-1 mb-8">
 
-            <button
+            <button onClick={() => setLogin(true)}
               className="w-1/2 py-3 rounded-lg bg-blue-950 text-white font-semibold shadow-sm"
             >
               Login
             </button>
 
-            <button
+            <button onClick={() => setLogin(false)}
               className="w-1/2 py-3 rounded-lg text-gray-500 font-semibold hover:text-blue-950 transition"
             >
               Register
             </button>
 
           </div>
+
+          {!isLogin && (
+            <div className="mb-5">
+
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
+              />
+
+            </div>
+          )}
 
           {/* Email */}
           <div className="mb-5">
@@ -100,9 +123,7 @@ export default function Login() {
                 Password
               </label>
 
-              <button className="text-sm text-blue-900 hover:underline">
-                Forgot Password?
-              </button>
+
 
             </div>
 
@@ -115,7 +136,7 @@ export default function Login() {
           </div>
 
           {/* Remember Me */}
-          <div className="flex items-center gap-2 mb-7">
+          {/* <div className="flex items-center gap-2 mb-7">
 
             <input
               type="checkbox"
@@ -130,13 +151,13 @@ export default function Login() {
               Remember me
             </label>
 
-          </div>
+          </div> */}
 
           {/* Login Button */}
           <button
-            className="w-full py-3.5 rounded-xl bg-blue-950 text-white font-semibold text-lg hover:bg-blue-900 active:scale-[0.99] transition duration-200 shadow-lg shadow-blue-950/20"
+            className="w-full mt-5 py-3.5 rounded-xl bg-blue-950 text-white font-semibold text-lg hover:bg-blue-900 active:scale-[0.99] transition duration-200 shadow-lg shadow-blue-950/20"
           >
-            Login
+           {isLogin ? "Login":"Register" }
           </button>
 
           {/* Register Text */}
@@ -144,7 +165,8 @@ export default function Login() {
 
             Don't have an account?{" "}
 
-            <button className="text-blue-950 font-semibold hover:underline">
+            <button onClick={()=>isLogin(false)}
+            className="text-blue-950 font-semibold hover:underline">
               Create Account
             </button>
 
