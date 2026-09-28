@@ -68,15 +68,16 @@ export default function Login() {
 
           {/* Login / Register Buttons */}
           <div className="flex bg-gray-100 rounded-xl p-1 mb-8">
+           
 
-            <button onClick={() => setLogin(true)}
-              className="w-1/2 py-3 rounded-lg bg-blue-950 text-white font-semibold shadow-sm"
+            <button onClick={() => setLogin(true)} 
+              className={`w-1/2 py-3 rounded-lg font-semibold shadow-sm${isLogin?" bg-blue-950 text-white":" text-gray-500 bg-white"}`}
             >
               Login
             </button>
 
             <button onClick={() => setLogin(false)}
-              className="w-1/2 py-3 rounded-lg text-gray-500 font-semibold hover:text-blue-950 transition"
+             className={`w-1/2 py-3 rounded-lg font-semibold shadow-sm${isLogin?"text-gray-500 bg-white":" bg-blue-950 text-white" }`}
             >
               Register
             </button>
@@ -161,17 +162,18 @@ export default function Login() {
           </button>
 
           {/* Register Text */}
+          {isLogin &&
           <p className="text-center text-sm text-gray-500 mt-7">
 
             Don't have an account?{" "}
 
-            <button onClick={()=>isLogin(false)}
+            <button onClick={()=>setLogin(false)}
             className="text-blue-950 font-semibold hover:underline">
               Create Account
             </button>
 
           </p>
-
+              }
         </div>
       </div>
 
