@@ -5,8 +5,18 @@ import React, { useState } from "react";
 export default function Login() {
 
 
-  const [isLogin, setLogin] = useState(true)
+  const [isLogin, setLogin] = useState(true);
+  const [fullName,setfullName ] = useState("");
+  const [email,setemail ] = useState("");
+  const [password,setpassword ] = useState("");
+  
 
+  const submitHandler = async (e)=>{
+    
+    setfullName("");
+    setemail("");
+    setpassword("");
+  }
 
 
   return (
@@ -92,6 +102,8 @@ export default function Login() {
               </label>
 
               <input
+                value={fullName}
+                onChange={(e)=>setfullName(e.target.value)}
                 type="text"
                 placeholder="Enter your full name"
                 className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
@@ -103,11 +115,14 @@ export default function Login() {
           {/* Email */}
           <div className="mb-5">
 
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label
+             className="block text-sm font-semibold text-gray-700 mb-2">
               Email Address
             </label>
 
             <input
+            value={email}
+                onChange={(e)=>setemail(e.target.value)}
               type="email"
               placeholder="Enter your email"
               className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
@@ -129,6 +144,8 @@ export default function Login() {
             </div>
 
             <input
+            value={password}
+                onChange={(e)=>setpassword(e.target.value)}
               type="password"
               placeholder="Enter your password"
               className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
@@ -136,26 +153,9 @@ export default function Login() {
 
           </div>
 
-          {/* Remember Me */}
-          {/* <div className="flex items-center gap-2 mb-7">
-
-            <input
-              type="checkbox"
-              id="remember"
-              className="w-4 h-4 accent-blue-950"
-            />
-
-            <label
-              htmlFor="remember"
-              className="text-sm text-gray-500 cursor-pointer"
-            >
-              Remember me
-            </label>
-
-          </div> */}
-
           {/* Login Button */}
           <button
+          onClick={submitHandler}
             className="w-full mt-5 py-3.5 rounded-xl bg-blue-950 text-white font-semibold text-lg hover:bg-blue-900 active:scale-[0.99] transition duration-200 shadow-lg shadow-blue-950/20"
           >
            {isLogin ? "Login":"Register" }
