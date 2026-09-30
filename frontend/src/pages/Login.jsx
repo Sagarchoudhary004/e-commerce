@@ -16,8 +16,8 @@ export default function Login() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    try {
+    if (isLogin===false) {
+      try {
       const response = await axios.post(
         "http://localhost:8000/api/v1/user/register",
         {
@@ -40,7 +40,36 @@ export default function Login() {
     catch (error) {
       console.log(error);
     }
+  
+      
+    } else {
+      try {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/user/login",
+        {
+          
+          email,
+          password,
+        },
+
+      );
+
+      console.log(response.data);
+      
+      setemail("");
+      setpassword("");
+
+        toast.success("login successfully!");
+
+
+    }
+    catch (error) {
+      console.log(error);
+    }
   };
+      
+    }
+    
 
 
   return (

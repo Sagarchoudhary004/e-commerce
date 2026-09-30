@@ -37,3 +37,39 @@ export const registerUser = async (req, res) => {
     });
   }
 };
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+      const existMail = await User.findOne({ email });
+
+      if (!existMail) {
+        return res.status(400).json({
+          message: "Invalid email or password",
+        });
+      }
+
+      const isPasswordCorrect = await bcryptjs.compare(
+        password,
+        existMail.password
+      );
+
+     if (isPasswordCorrect) {
+       return res.status(200).json({
+          message: "welcome",
+        })
+     } else {
+      return res.status(400).json({
+          message: "Invalid email or password",
+        })
+     }
+  } catch (error) {
+    console.log(error);
+  }
+};
