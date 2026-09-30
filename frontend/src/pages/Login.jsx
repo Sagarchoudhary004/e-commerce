@@ -1,22 +1,46 @@
 
 import React, { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 
 export default function Login() {
 
 
   const [isLogin, setLogin] = useState(true);
-  const [fullName,setfullName ] = useState("");
-  const [email,setemail ] = useState("");
-  const [password,setpassword ] = useState("");
+  const [fullName, setfullName] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
   
 
-  const submitHandler = async (e)=>{
-    
-    setfullName("");
-    setemail("");
-    setpassword("");
-  }
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/user/register",
+        {
+          fullName,
+          email,
+          password,
+        },
+
+      );
+
+      console.log(response.data);
+      setfullName("");
+      setemail("");
+      setpassword("");
+
+        toast.success("Account created successfully!");
+
+
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -68,26 +92,26 @@ export default function Login() {
           {/* Heading */}
           <div className="mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
-              {isLogin?"Welcome Back":"Welcome "}
+              {isLogin ? "Welcome Back" : "Welcome "}
             </h1>
 
             <p className="mt-2 text-gray-500">
-              {isLogin?"Please login to your account":"Please create your account"}
+              {isLogin ? "Please login to your account" : "Please create your account"}
             </p>
           </div>
 
           {/* Login / Register Buttons */}
           <div className="flex bg-gray-100 rounded-xl p-1 mb-8">
-           
 
-            <button onClick={() => setLogin(true)} 
-              className={`w-1/2 py-3 rounded-lg font-semibold shadow-sm${isLogin?" bg-blue-950 text-white":" text-gray-500 bg-white"}`}
+
+            <button onClick={() => setLogin(true)}
+              className={`w-1/2 py-3 rounded-lg font-semibold shadow-sm${isLogin ? " bg-blue-950 text-white" : " text-gray-500 bg-white"}`}
             >
               Login
             </button>
 
             <button onClick={() => setLogin(false)}
-             className={`w-1/2 py-3 rounded-lg font-semibold shadow-sm${isLogin?"text-gray-500 bg-white":" bg-blue-950 text-white" }`}
+              className={`w-1/2 py-3 rounded-lg font-semibold shadow-sm${isLogin ? "text-gray-500 bg-white" : " bg-blue-950 text-white"}`}
             >
               Register
             </button>
@@ -103,7 +127,7 @@ export default function Login() {
 
               <input
                 value={fullName}
-                onChange={(e)=>setfullName(e.target.value)}
+                onChange={(e) => setfullName(e.target.value)}
                 type="text"
                 placeholder="Enter your full name"
                 className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
@@ -116,13 +140,13 @@ export default function Login() {
           <div className="mb-5">
 
             <label
-             className="block text-sm font-semibold text-gray-700 mb-2">
+              className="block text-sm font-semibold text-gray-700 mb-2">
               Email Address
             </label>
 
             <input
-            value={email}
-                onChange={(e)=>setemail(e.target.value)}
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
               type="email"
               placeholder="Enter your email"
               className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
@@ -144,8 +168,8 @@ export default function Login() {
             </div>
 
             <input
-            value={password}
-                onChange={(e)=>setpassword(e.target.value)}
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
               type="password"
               placeholder="Enter your password"
               className="w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none focus:border-blue-950 focus:ring-2 focus:ring-blue-100 transition placeholder:text-gray-400"
@@ -155,25 +179,25 @@ export default function Login() {
 
           {/* Login Button */}
           <button
-          onClick={submitHandler}
+            onClick={submitHandler}
             className="w-full mt-5 py-3.5 rounded-xl bg-blue-950 text-white font-semibold text-lg hover:bg-blue-900 active:scale-[0.99] transition duration-200 shadow-lg shadow-blue-950/20"
           >
-           {isLogin ? "Login":"Register" }
+            {isLogin ? "Login" : "Register"}
           </button>
 
           {/* Register Text */}
           {isLogin &&
-          <p className="text-center text-sm text-gray-500 mt-7">
+            <p className="text-center text-sm text-gray-500 mt-7">
 
-            Don't have an account?{" "}
+              Don't have an account?{" "}
 
-            <button onClick={()=>setLogin(false)}
-            className="text-blue-950 font-semibold hover:underline">
-              Create Account
-            </button>
+              <button onClick={() => setLogin(false)}
+                className="text-blue-950 font-semibold hover:underline">
+                Create Account
+              </button>
 
-          </p>
-              }
+            </p>
+          }
         </div>
       </div>
 
