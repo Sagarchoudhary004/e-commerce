@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom"
 
 
 export default function Login() {
@@ -11,65 +12,66 @@ export default function Login() {
   const [fullName, setfullName] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  
+   const navigate = useNavigate();
+
 
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (isLogin===false) {
+    if (isLogin === false) {
       try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/register",
-        {
-          fullName,
-          email,
-          password,
-        },
+        const response = await axios.post(
+          "http://localhost:8000/api/v1/user/register",
+          {
+            fullName,
+            email,
+            password,
+          },
 
-      );
+        );
 
-      console.log(response.data);
-      setfullName("");
-      setemail("");
-      setpassword("");
+        console.log(response.data);
+        setfullName("");
+        setemail("");
+        setpassword("");
 
         toast.success("Account created successfully!");
 
 
-    }
-    catch (error) {
-      console.log(error);
-    }
-  
-      
+      }
+      catch (error) {
+        console.log(error);
+      }
+
+
     } else {
       try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
-        {
-          
-          email,
-          password,
-        },
+        const response = await axios.post(
+          "http://localhost:8000/api/v1/user/login",
+          {
 
-      );
+            email,
+            password,
+          },
 
-      console.log(response.data);
-      
-      setemail("");
-      setpassword("");
+        );
+
+        console.log(response.data);
+
+        setemail("");
+        setpassword("");
 
         toast.success("login successfully!");
+        navigate("/browse")
 
+      }
+      catch (error) {
+        console.log(error);
+      }
+    };
 
-    }
-    catch (error) {
-      console.log(error);
-    }
-  };
-      
-    }
-    
+  }
+
 
 
   return (
