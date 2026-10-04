@@ -12,7 +12,7 @@ export default function Login() {
   const [fullName, setfullName] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
 
@@ -27,6 +27,9 @@ export default function Login() {
             email,
             password,
           },
+          {
+            withCredentials: true,
+          }
 
         );
 
@@ -41,6 +44,7 @@ export default function Login() {
       }
       catch (error) {
         console.log(error);
+
       }
 
 
@@ -48,11 +52,15 @@ export default function Login() {
       try {
         const response = await axios.post(
           "http://localhost:8000/api/v1/user/login",
+
           {
 
             email,
             password,
           },
+          {
+            withCredentials: true,
+          }
 
         );
 
@@ -67,6 +75,7 @@ export default function Login() {
       }
       catch (error) {
         console.log(error);
+        toast.error("Invalid Email Or Password");
       }
     };
 
