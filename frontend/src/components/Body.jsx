@@ -1,7 +1,8 @@
 import React from 'react'
 import Login from '../pages/Login'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Browse from '../pages/browse'
+import Browse from '../pages/Browse'
+
 import ProtectedRoute from "../components/ProtectedRoute"
 
 export default function Body() {

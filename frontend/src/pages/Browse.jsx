@@ -1,7 +1,13 @@
 import React from 'react'
+import Header from  "./Header"
 
 export default function Browse() {
   return (
-    <div>browse</div>
+    <div>
+    <Header/>
+      <div>
+        browse
+      </div>
+      </div>
   )
 }
