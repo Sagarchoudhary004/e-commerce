@@ -32,3 +32,17 @@ export const createProduct = async (req, res) => {
     });
   }
 };
+export const getProducts = async(req,res)=>{
+  try { const products = await Product.find()
+    return res.status(200).json({
+      message: "Products retrieved successfully",
+      products,
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+}
