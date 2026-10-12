@@ -6,8 +6,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import { AiFillProduct } from "react-icons/ai";
 import { BiCube } from "react-icons/bi";
 import { MdAccountCircle } from "react-icons/md";
+import { useState } from 'react';
 
 export default function Sidebar() {
+
+  
+
   return (
     <div className=" left-0 top-0 h-screen w-[250px] bg-[#061340] shadow-md ">
       <div>
