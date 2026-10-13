@@ -2,7 +2,7 @@ import React from 'react'
 import { MdMenu } from "react-icons/md";
 import { MdOutlineHome } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
-
+import { Link } from 'react-router-dom';
 import { AiFillProduct } from "react-icons/ai";
 import { BiCube } from "react-icons/bi";
 import { MdAccountCircle } from "react-icons/md";
@@ -10,42 +10,73 @@ import { useState } from 'react';
 
 export default function Sidebar() {
 
-  
+  const [isOpen, setOpen] = useState(false)
 
   return (
-    <div className=" left-0 top-0 h-screen w-[250px] bg-[#061340] shadow-md ">
+    <div className={`h-screen bg-[#061340] shadow-md ${isOpen ? "w-[250px]" : "w-[70px]"}`}>
       <div>
         <header>
-          <a href="" className='flex items-center gap-5 pl-4 pt-5'>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setOpen(open => !open);
+            }}
+            className='flex items-center gap-5 pl-4 pt-5'>
             <MdMenu color="white" size={30} />
-            <span className='text-amber-50'>Menu</span>
-          </a>
+            {isOpen && (
+              <span className="text-amber-50">Menu</span>
+            )}
+          </button>
 
 
         </header>
-        <a href="/browse" className='flex items-center gap-5 mt-5 pl-4'>
+
+        <Link
+          to="/browse"
+          className="flex items-center gap-5 mt-5 pl-4"
+        >
           <MdOutlineHome color="white" size={30} />
-          <span className='text-amber-50'>Home</span>
-        </a>
-        <a href="" className='flex items-center gap-5 mt-5 pl-4'>
+
+          {isOpen && (
+            <span className="text-amber-50">Home</span>
+          )}
+        </Link>
+
+        <Link
+        to= ""
+        className='flex items-center gap-5 mt-5 pl-4'>
           <AiFillProduct color="white" size={30} />
-          <span className='text-amber-50'>Products</span>
-        </a>
+          {isOpen && (
+            <span className="text-amber-50">Products</span>
+          )}
+        </Link>
 
-        <a href="" className='flex items-center gap-5 mt-5 pl-4'>
+        <Link
+        to =""
+         className='flex items-center gap-5 mt-5 pl-4'>
           <FaShoppingCart color="white" size={30} />
-          <span className='text-amber-50'>Cart</span>
-        </a>
+          {isOpen && (
+            <span className="text-amber-50">Cart</span>
+          )}
+        </Link>
 
-        <a href=""  className='flex items-center gap-5 mt-5 pl-4'>
+        <Link
+        to =""
+         className='flex items-center gap-5 mt-5 pl-4'>
           <BiCube color="white" size={30} />
-          <span className='text-amber-50'>Orders</span>
-        </a>
-        <a href="" className='flex items-center gap-5 mt-5 pl-4 '>
+          {isOpen && (
+            <span className="text-amber-50">Orders</span>
+          )}
+        </Link>
+        <Link
+        to =""
+        className='flex items-center gap-5 mt-5 pl-4 '>
           <MdAccountCircle color="white" size={30} />
-          <span className='text-amber-50'>Account</span>
+         {isOpen && (
+            <span className="text-amber-50">Account</span>
+          )}
 
-        </a>
+        </Link>
       </div>
     </div>
   )
