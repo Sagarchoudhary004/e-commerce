@@ -48,13 +48,13 @@ export default function Header() {
           </button>
 
           {/* Mobile menu — Sidebar later connect karenge */}
-          <button
+          {/* <button
             type="button"
             aria-label="Open menu"
             className="text-gray-700 transition hover:text-blue-600 lg:hidden"
           >
             <FiMenu size={24} />
-          </button>
+          </button> */}
 
         </div>
       </div>

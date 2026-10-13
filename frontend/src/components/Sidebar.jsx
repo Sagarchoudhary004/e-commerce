@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { MdMenu } from "react-icons/md";
 import { MdOutlineHome } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
@@ -13,15 +13,19 @@ export default function Sidebar() {
   const [isOpen, setOpen] = useState(false)
 
   return (
-    <div className={`h-screen bg-[#061340] shadow-md ${isOpen ? "w-[250px]" : "w-[70px]"}`}>
+    <div className={`h-screen bg-[#061340] shadow-md ${
+    isOpen
+      ? "w-[140px] sm:w-[200px]"
+      : "w-[60px] sm:w-[70px]"
+  }`}>
       <div>
         <header>
           <button
             onClick={(e) => {
               e.preventDefault();
-              setOpen(open => !open);
+              setOpen(pre => !pre); 
             }}
-            className='flex items-center gap-5 pl-4 pt-5'>
+            className='flex items-center gap-5 pl-4 pt-5 cursor-pointer'>
             <MdMenu color="white" size={30} />
             {isOpen && (
               <span className="text-amber-50">Menu</span>
