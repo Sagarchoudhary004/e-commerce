@@ -11,9 +11,16 @@ import { useState } from 'react';
 export default function Sidebar() {
 
   const [isOpen, setOpen] = useState(false)
+  let menuText;
+
+if (isOpen) {
+  menuText = <span className="text-amber-50">Menu</span>;
+} else {
+  menuText = null;
+}
 
   return (
-    <div className={`h-screen bg-[#061340] shadow-md ${
+    <div className={`h-screen bg-[#061340] shadow-md  ${
     isOpen
       ? "w-[140px] sm:w-[200px]"
       : "w-[60px] sm:w-[70px]"
@@ -27,9 +34,14 @@ export default function Sidebar() {
             }}
             className='flex items-center gap-5 pl-4 pt-5 cursor-pointer'>
             <MdMenu color="white" size={30} />
-            {isOpen && (
+            {menuText}
+             
+            {/* AGAR YE IF ELSE SE NA KENA HO TO COMMENT BALE PART SE BHI KR SKTE H US ME EASY H */}
+
+
+            {/* {isOpen && (
               <span className="text-amber-50">Menu</span>
-            )}
+            )} */}
           </button>
 
 

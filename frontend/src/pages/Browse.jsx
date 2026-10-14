@@ -1,6 +1,5 @@
 import React from 'react'
-import Header from "./Header"
-import Sidebar from "../components/Sidebar"
+
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -11,9 +10,8 @@ export default function Browse() {
 
 
     <div>
-      <Header />
-      <Sidebar />
-      <div>
+     
+      <div className='h-[calc(100vh-64px)] overflow-y-auto"'>
         browse
       </div>
     </div>
