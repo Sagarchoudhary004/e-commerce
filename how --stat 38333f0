@@ -1,0 +1,10 @@
+[33m38333f0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: implement MainLayout component and update routing structure in Body component
+[33md40e716[m feat: update Sidebar component styles for better responsiveness and improve toggle function
+[33m95fbdda[m feat: update Sidebar component to use Link from react-router-dom for navigation
+[33mf2b8fdd[m feat: add useState import to Sidebar component for future state management
+[33m59e4902[m feat: enhance Sidebar component with additional menu items and improved structure
+[33m18923e0[m feat: add Sidebar component and integrate it into Browse page; improve code formatting
+[33m0a6b3bb[m feat: refactor Header component for improved layout and functionality; add search bar and mobile menu
+[33m095091d[m feat: add getProductById endpoint and update productRouter; enhance Browse component with state management
+[33mf5fc0c8[m feat: add getProducts endpoint for retrieving product list
+[33mdd2d67e[m feat: add productRouter for product creation endpoint
