@@ -26,6 +26,9 @@ const productSchema = new mongoose.Schema(
         image :{
             type: String,
             required: true
+        },
+        imagePublicId: {
+            type: String
         }
     },
     {timestamps: true}
