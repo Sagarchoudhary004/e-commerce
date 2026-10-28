@@ -27,7 +27,7 @@ app.use("/api/v1/user",route)
 app.use("/api/v1/product",productRoute)
 
 
-const PORT = process.env.PORT ||3000;
+const PORT = process.env.PORT || 8000;
 
 app.get("/",(req,res) =>{
     res.send("E-Commerce Backend Server is Running");

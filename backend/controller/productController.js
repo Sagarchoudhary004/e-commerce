@@ -27,6 +27,20 @@ const isRemoteImageUrl = (value) => {
   }
 };
 
+const getSafeErrorMessage = (error) => {
+  let message = error instanceof Error ? error.message : "Unknown error";
+
+  for (const secret of [
+    process.env.CLOUDINARY_API_SECRET,
+    process.env.CLOUDINARY_API_KEY,
+    process.env.MONGO_URI,
+  ]) {
+    if (secret) message = message.split(secret).join("[redacted]");
+  }
+
+  return message;
+};
+
 const hasValidImageSignature = async (filePath, mimeType) => {
   const file = await open(filePath, "r");
 
@@ -37,9 +51,7 @@ const hasValidImageSignature = async (filePath, mimeType) => {
 
     if (mimeType === "image/jpeg") {
       return (
-        signature[0] === 0xff &&
-        signature[1] === 0xd8 &&
-        signature[2] === 0xff
+        signature[0] === 0xff && signature[1] === 0xd8 && signature[2] === 0xff
       );
     }
     if (mimeType === "image/png") {
@@ -70,7 +82,8 @@ export const createProduct = async (req, res) => {
   let productCreated = false;
 
   try {
-    const { productName, description, price, category, stock, image } = req.body;
+    const { productName, description, price, category, stock, image } =
+      req.body;
 
     if (
       !productName ||
@@ -90,7 +103,7 @@ export const createProduct = async (req, res) => {
     if (filePath) {
       if (!(await hasValidImageSignature(filePath, req.file.mimetype))) {
         throw new RequestValidationError(
-          "Uploaded file content is not a valid image"
+          "Uploaded file content is not a valid image",
         );
       }
 
@@ -104,7 +117,7 @@ export const createProduct = async (req, res) => {
       await removeTemporaryFile(filePath);
     } else if (!isRemoteImageUrl(image)) {
       throw new RequestValidationError(
-        "Provide an image file or a valid image URL"
+        "Provide an image file or a valid image URL",
       );
     }
 
@@ -146,7 +159,15 @@ export const createProduct = async (req, res) => {
       console.error("Image cleanup failed:", cleanupErrors);
     }
     if (!(error instanceof RequestValidationError)) {
-      console.error("Product creation failed:", error);
+      console.error("Product creation failed:", {
+        errorType: typeof error,
+        name: error?.name,
+        message: error?.message,
+        stack: error?.stack,
+        code: error?.code,
+        http_code: error?.http_code,
+        errorDetails: error,
+      });
     }
 
     const cleanupFailed = cleanupErrors.length > 0;
@@ -160,15 +181,19 @@ export const createProduct = async (req, res) => {
         : statusCode === 400
           ? error.message
           : "Product creation failed",
+      ...(statusCode === 500 && process.env.NODE_ENV !== "production"
+        ? { detail: getSafeErrorMessage(error) }
+        : {}),
     });
   }
 };
-export const getProducts = async(req,res)=>{
-  try { const products = await Product.find()
+export const getProducts = async (req, res) => {
+  try {
+    const products = await Product.find();
     return res.status(200).json({
       message: "Products retrieved successfully",
       products,
-    })
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -176,15 +201,15 @@ export const getProducts = async(req,res)=>{
       error: error.message,
     });
   }
-}
+};
 
-export const getProductById = async(req,res)=>{
+export const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id)
+    const product = await Product.findById(req.params.id);
     return res.status(200).json({
       message: "Product find successfully",
       product,
-    })
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -192,4 +217,4 @@ export const getProductById = async(req,res)=>{
       error: error.message,
     });
   }
-}
+};
