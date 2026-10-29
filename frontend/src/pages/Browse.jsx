@@ -25,9 +25,19 @@ export default function Browse() {
 
     <div>
 
-      <div className='h-[calc(100vh-64px)] overflow-y-auto'>
-        browse
-      </div>
+      <div className="h-[calc(100vh-64px)] overflow-y-auto p-6">
+  <h1 className="text-2xl font-bold">
+    Browse Products
+  </h1>
+
+  <h2>{products[0]?.productName}</h2>
+  <p>₹{products[0]?.price}</p>
+  <img
+    src={products[0]?.image}
+    alt={products[0]?.productName}
+    className="h-48 w-48 object-cover"
+  />
+</div>
     </div>
   )
 }
