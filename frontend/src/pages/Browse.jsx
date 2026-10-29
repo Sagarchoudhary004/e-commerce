@@ -12,9 +12,9 @@ export default function Browse() {
       .get("http://localhost:8000/api/v1/product/getProducts")
       .then((response) => {
         console.log("Full response:", response.data);
-  console.log("Products:", response.data.products);
+        console.log("Products:", response.data.products);
         setproducts(response.data.products);
-        
+
       })
       .catch((error) => {
         console.log("Error fetching products:", error);
@@ -26,18 +26,28 @@ export default function Browse() {
     <div>
 
       <div className="h-[calc(100vh-64px)] overflow-y-auto p-6">
-  <h1 className="text-2xl font-bold">
-    Browse Products
-  </h1>
+        <h1 className="text-2xl font-bold">
+          Browse Products
+        </h1>
+        <div className="grid grid-cols-2 gap-15">
+        {
+          products.map((products) => {
+            return (
+              <div >
+                <h2>{products.productName}</h2>
+                <p>₹{products.price}</p>
+                <img
+                  src={products.image}
+                  alt={products.productName}
+                  className="h-48 w-48 object-cover"
+                />
+              </div>
+            )
+          })
+        }
+        </div>
+      </div>
 
-  <h2>{products[0]?.productName}</h2>
-  <p>₹{products[0]?.price}</p>
-  <img
-    src={products[0]?.image}
-    alt={products[0]?.productName}
-    className="h-48 w-48 object-cover"
-  />
-</div>
     </div>
   )
 }
