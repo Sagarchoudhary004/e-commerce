@@ -59,7 +59,7 @@ if (isOpen) {
         </Link>
 
         <Link
-        to= ""
+        to= "/products"
         className='flex items-center gap-5 mt-5 pl-4'>
           <AiFillProduct color="white" size={30} />
           {isOpen && (
@@ -68,7 +68,7 @@ if (isOpen) {
         </Link>
 
         <Link
-        to =""
+        to ="/cart"
          className='flex items-center gap-5 mt-5 pl-4'>
           <FaShoppingCart color="white" size={30} />
           {isOpen && (
@@ -77,7 +77,7 @@ if (isOpen) {
         </Link>
 
         <Link
-        to =""
+        to ="/orders"
          className='flex items-center gap-5 mt-5 pl-4'>
           <BiCube color="white" size={30} />
           {isOpen && (
@@ -85,7 +85,7 @@ if (isOpen) {
           )}
         </Link>
         <Link
-        to =""
+        to ="/account"
         className='flex items-center gap-5 mt-5 pl-4 '>
           <MdAccountCircle color="white" size={30} />
          {isOpen && (

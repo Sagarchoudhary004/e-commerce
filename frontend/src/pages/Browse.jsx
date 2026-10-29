@@ -21,8 +21,6 @@ export default function Browse() {
       });
   }, []);
   return (
-
-
     <div>
 
       <div className="h-[calc(100vh-64px)] overflow-y-auto p-6">
@@ -30,21 +28,21 @@ export default function Browse() {
           Browse Products
         </h1>
         <div className="grid grid-cols-2 gap-15">
-        {
-          products.map((products) => {
-            return (
-              <div >
-                <h2>{products.productName}</h2>
-                <p>₹{products.price}</p>
-                <img
-                  src={products.image}
-                  alt={products.productName}
-                  className="h-48 w-48 object-cover"
-                />
-              </div>
-            )
-          })
-        }
+          {
+            products.map((products) => {
+              return (
+                <div >
+                  <h2>{products.productName}</h2>
+                  <p>₹{products.price}</p>
+                  <img
+                    src={products.image}
+                    alt={products.productName}
+                    className="h-48 w-48 object-cover"
+                  />
+                </div>
+              )
+            })
+          }
         </div>
       </div>
 

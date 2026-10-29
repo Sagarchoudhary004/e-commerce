@@ -1,5 +1,9 @@
 import React from 'react'
 import Login from '../pages/Login'
+import Products from '../pages/Products'
+import Orders from '../pages/Orders'
+import Cart from '../pages/Cart'
+import Account from '../pages/Account'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Browse from '../pages/Browse'
 import MainLayout from './MainLayout'
@@ -12,8 +16,18 @@ export default function Body() {
             path: "/",
             element: <Login />
         },
+       {
+        element: <MainLayout/>,
+        children: [
+            { path: "/products", element: <Products/>},
+             { path: "/cart", element: <Cart/>},
+             { path: "/account", element: <Account/>},
+             { path: "/orders", element: <Orders/>}
+
+
+        ]
+       },
         {
-            
             element: <MainLayout />,
             children: [
                 {

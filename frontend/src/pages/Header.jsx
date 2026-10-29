@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/loho.png";
 import { FiSearch, FiHeart, FiShoppingCart, FiMenu } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -38,7 +39,8 @@ export default function Header() {
           >
             <FiHeart size={23} />
           </button>
-
+          <Link 
+          to="/cart">
           <button
             type="button"
             aria-label="Shopping cart"
@@ -46,6 +48,7 @@ export default function Header() {
           >
             <FiShoppingCart size={23} />
           </button>
+          </Link>
 
           {/* Mobile menu — Sidebar later connect karenge */}
           {/* <button
