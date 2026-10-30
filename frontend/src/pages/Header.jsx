@@ -30,8 +30,10 @@ export default function Header() {
         </div>
 
         {/* Action Icons */}
+        
         <div className="flex shrink-0 items-center gap-3 sm:gap-5 lg:gap-7">
-
+          <Link
+        to="/like">
           <button
             type="button"
             aria-label="Wishlist"
@@ -39,6 +41,7 @@ export default function Header() {
           >
             <FiHeart size={23} />
           </button>
+          </Link>
           <Link 
           to="/cart">
           <button

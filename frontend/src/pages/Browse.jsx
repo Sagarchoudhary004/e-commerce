@@ -29,14 +29,14 @@ export default function Browse() {
         </h1>
         <div className="grid grid-cols-2 gap-15">
           {
-            products.map((products) => {
+            products.map((product) => {
               return (
                 <div >
-                  <h2>{products.productName}</h2>
-                  <p>₹{products.price}</p>
+                  <h2>{product.productName}</h2>
+                  <p>₹{product.price}</p>
                   <img
-                    src={products.image}
-                    alt={products.productName}
+                    src={product.image}
+                    alt={product.productName}
                     className="h-48 w-48 object-cover"
                   />
                 </div>
