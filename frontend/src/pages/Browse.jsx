@@ -2,10 +2,14 @@ import React from 'react'
 
 import { useEffect, useState } from 'react'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Browse() {
   const [products, setproducts] = useState([]);
+  // const nevigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -31,7 +35,10 @@ export default function Browse() {
           {
             products.map((product) => {
               return (
-                <div >
+                <div key={product._id}>
+                  
+                  <button onClick={()=>navigate(`/product/${product._id}`)}>
+                    
                   <h2>{product.productName}</h2>
                   <p>₹{product.price}</p>
                   <img
@@ -39,6 +46,7 @@ export default function Browse() {
                     alt={product.productName}
                     className="h-48 w-48 object-cover"
                   />
+                  </button>
                 </div>
               )
             })

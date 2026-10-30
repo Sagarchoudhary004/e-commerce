@@ -8,6 +8,7 @@ import Like from '../pages/Like'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Browse from '../pages/Browse'
 import MainLayout from './MainLayout'
+import ProductDetails from '../pages/ProductDetails';
 
 import ProtectedRoute from "../components/ProtectedRoute"
 import like from '../pages/Like'
@@ -18,18 +19,23 @@ export default function Body() {
             path: "/",
             element: <Login />
         },
-       {
-        element: <MainLayout/>,
-        children: [
-            { path: "/products", element: <Products/>},
-             { path: "/cart", element: <Cart/>},
-             { path: "/account", element: <Account/>},
-             { path: "/orders", element: <Orders/>},
-             {path:"/like",element:<Like/>}
+
+        {
+            element: <MainLayout />,
+            children: [
+                { path: "/products", element: <Products /> },
+                { path: "/cart", element: <Cart /> },
+                { path: "/account", element: <Account /> },
+                { path: "/orders", element: <Orders /> },
+                { path: "/like", element: <Like /> },
+              {
+                    path: "/product/:id",
+                    element: <ProductDetails />
+                },
 
 
-        ]
-       },
+            ]
+        },
         {
             element: <MainLayout />,
             children: [
