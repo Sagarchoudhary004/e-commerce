@@ -2,7 +2,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate,Link} from 'react-router-dom';
 import axios from 'axios';
 
 export default function ProductDetails() {
@@ -68,7 +68,14 @@ export default function ProductDetails() {
             <div className="mx-auto max-w-6xl">
 
                 <div className="overflow-hidden rounded-2xl bg-white shadow-md">
-
+                    <Link
+                        to="/browse"
+                        className="inline-flex items-center gap-2 rounded-lg px-4 py-2
+                   font-medium text-blue-600 transition
+                   hover:bg-blue-50"
+                    >
+                        ← Back to Browse
+                    </Link>
                     <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-2 md:gap-12 md:p-10">
 
                         {/* Product Image */}
