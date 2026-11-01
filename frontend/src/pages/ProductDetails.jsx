@@ -2,7 +2,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function ProductDetails() {
@@ -113,8 +113,8 @@ export default function ProductDetails() {
                                 </span>
 
                                 <span className={`ml-2 text-sm font-semibold ${product.stock > 0
-                                        ? "text-green-600"
-                                        : "text-red-600"
+                                    ? "text-green-600"
+                                    : "text-red-600"
                                     }`}>
                                     {product.stock > 0
                                         ? `${product.stock} items available`
@@ -122,13 +122,24 @@ export default function ProductDetails() {
                                 </span>
                             </div>
 
-                            <button
-                                disabled={product.stock <= 0}
-                                className="mt-3 w-full rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white shadow-sm transition duration-200 hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-fit sm:min-w-48"
-                            >
-                                Add to Cart
-                            </button>
+                            <div className='display flex gap-10'>
 
+                                <button
+                                    disabled={product.stock <= 0}
+                                    className="mt-3 w-full rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white
+                                 shadow-sm transition duration-200 hover:bg-blue-700 cursor-pointer
+                                active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-fit sm:min-w-48"
+                                >
+                                    Add to Cart
+                                </button>
+                                <button
+                                    className='className="mt-3 w-full rounded-xl bg-blue-600 px-6 py-3.5 mt-2.5 font-semibold
+                             text-white shadow-sm transition duration-200 cursor-pointer
+                             hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-fit sm:min-w-48"'
+                                >
+                                    Buy Now
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
