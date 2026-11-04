@@ -1,12 +1,15 @@
 // 
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate,Link} from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import CartContext from '../context/CartContext';
 
 export default function ProductDetails() {
     const { id } = useParams();
+    const { addToCart } = useContext(CartContext);
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -133,6 +136,7 @@ export default function ProductDetails() {
 
                                 <button
                                     disabled={product.stock <= 0}
+                                    onClick={() => { addToCart(product); toast.success('Added to cart'); }}
                                     className="mt-3 w-full rounded-xl bg-blue-600 px-6 py-3.5 font-semibold text-white
                                  shadow-sm transition duration-200 hover:bg-blue-700 cursor-pointer
                                 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-fit sm:min-w-48"
@@ -140,9 +144,8 @@ export default function ProductDetails() {
                                     Add to Cart
                                 </button>
                                 <button
-                                    className='className="mt-3 w-full rounded-xl bg-blue-600 px-6 py-3.5 mt-2.5 font-semibold
-                             text-white shadow-sm transition duration-200 cursor-pointer
-                             hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-gray-400 sm:w-fit sm:min-w-48"'
+                                    onClick={() => { addToCart(product); navigate('/cart'); }}
+                                    className="mt-3 w-full rounded-xl bg-green-600 px-6 py-3.5 font-semibold text-white shadow-sm transition hover:bg-green-700 active:scale-[0.98] sm:w-fit sm:min-w-48"
                                 >
                                     Buy Now
                                 </button>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/loho.png";
 import { FiSearch, FiHeart, FiShoppingCart, FiMenu } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import CartContext from "../context/CartContext";
 
 export default function Header() {
+  const { cartCount } = useContext(CartContext);
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
       <div className="flex items-center justify-between gap-3 px-4 py-3 sm:gap-5 sm:px-6 lg:px-8">
@@ -47,9 +49,10 @@ export default function Header() {
           <button
             type="button"
             aria-label="Shopping cart"
-            className="text-gray-700 transition hover:scale-110 hover:text-blue-600"
+            className="relative text-gray-700 transition hover:scale-110 hover:text-blue-600"
           >
             <FiShoppingCart size={23} />
+            {cartCount > 0 && <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 text-xs font-bold text-white">{cartCount}</span>}
           </button>
           </Link>
 
