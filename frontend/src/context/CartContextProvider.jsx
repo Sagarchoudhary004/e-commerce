@@ -43,7 +43,8 @@ const CartContextProvider = ({ children }) => {
     }, []);
 
     const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-    const value = useMemo(() => ({ cart, cartCount, addToCart, removeFromCart, updateQuantity }), [cart, cartCount, addToCart, removeFromCart, updateQuantity]);
+    const value = useMemo(() => ({ cart, cartCount, addToCart, removeFromCart, updateQuantity }),
+     [cart, cartCount, addToCart, removeFromCart, updateQuantity]);
     return (
         <CartContext.Provider value={value}>
         {children}
