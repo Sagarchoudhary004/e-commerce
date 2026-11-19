@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Browse from '../pages/Browse'
 import MainLayout from './MainLayout'
 import ProductDetails from '../pages/ProductDetails';
+import Checkout from '../pages/Checkout'
 
 import ProtectedRoute from "../components/ProtectedRoute"
 import like from '../pages/Like'
@@ -32,6 +33,7 @@ export default function Body() {
                     path: "/product/:id",
                     element: <ProductDetails />
                 },
+                {path:"/checkout", element: <Checkout/>}
 
 
             ]
