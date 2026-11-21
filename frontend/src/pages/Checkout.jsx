@@ -4,8 +4,13 @@ import orderContext from '../context/orderContext'
 
 export default function Checkout() {
 
-  const {setCheckoutItems} = useContext(orderContext)
+  const {checkoutItems} = useContext(orderContext)
+  console.log(checkoutItems);
   return (
+    
+    <>
     <div>Checkout</div>
+    
+    </>
   )
 }

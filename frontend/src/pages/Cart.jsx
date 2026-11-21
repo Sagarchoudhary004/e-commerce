@@ -1,10 +1,21 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CartContext from '../context/CartContext';
+import orderContext from '../context/orderContext';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
+  const { setCheckoutItems}= useContext(orderContext)
   const subtotal = cart.reduce((total, item) => total + Number(item.price) * item.quantity, 0);
+  const navigate = useNavigate();
+  const handleCheckout = ()=>{
+     console.log("Cart data:", cart);
+    setCheckoutItems(cart);
+    navigate("/checkout")
+  }
+
+  
 
   if (cart.length === 0) {
     return <section className="mx-auto max-w-4xl px-6 py-16 text-center">
@@ -39,8 +50,12 @@ export default function Cart() {
     </div>
     <div className="mt-8 flex flex-col items-end gap-4 border-t border-gray-200 pt-5">
       <p className="text-xl font-bold text-gray-900">Subtotal: ₹{subtotal.toLocaleString('en-IN')}</p>
-      <Link to="/checkout" className="rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700">
-        Continue shopping</Link>
+
+      <button
+      onClick={handleCheckout}
+      className="rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700">
+        Order Now
+        </button>
     </div>
   </section>;
 }
